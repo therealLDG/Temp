@@ -1,6 +1,6 @@
 # 1. Tic-Tac-Toe (Human vs AI) using Minimax
     import random
-
+    
     def tic_tac_toe():
         board = [' '] * 9
         human, ai = 'X', 'O'
@@ -137,8 +137,8 @@
                     visited.add(nbr)
                     queue.append(nbr)
         return order
-
-
+    
+    
     if __name__ == '__main__':
         sample_graph = {'A': ['B', 'C'], 'B': ['D'], 'C': ['E'], 'D': [], 'E': []}
         print("BFS order:", bfs(sample_graph, 'A'))
@@ -146,7 +146,7 @@
 
 # 4. Travelling Salesman via Hill Climbing
     import random
-
+    
     def tsp_hill_climbing(dist):
         nodes = list(dist.keys())
         current = nodes[:]
@@ -185,7 +185,7 @@
 
 # 5. Simulated Annealing for TSP
     import math
-
+    
     def simulated_annealing(dist, T0=10000, alpha=0.995, stopping_T=1e-3):
         nodes = list(dist.keys())
         current = nodes[:]
@@ -221,26 +221,26 @@
     def latin_square(n):
         grid = [[0] * n for _ in range(n)]
 
-    def ok(r, c, val):
-        return all(grid[r][j] != val for j in range(n)) and all(grid[i][c] != val for i in range(n))
-
-    def solve(pos=0):
-        if pos == n * n:
-            return True
-        r, c = divmod(pos, n)
-        for val in range(1, n + 1):
-            if ok(r, c, val):
-                grid[r][c] = val
-                if solve(pos + 1):
-                    return True
-                grid[r][c] = 0
-        return False
-
-    if solve():
-        for row in grid:
-            print(row)
-    else:
-        print("No solution")
+        def ok(r, c, val):
+            return all(grid[r][j] != val for j in range(n)) and all(grid[i][c] != val for i in range(n))
+    
+        def solve(pos=0):
+            if pos == n * n:
+                return True
+            r, c = divmod(pos, n)
+            for val in range(1, n + 1):
+                if ok(r, c, val):
+                    grid[r][c] = val
+                    if solve(pos + 1):
+                        return True
+                    grid[r][c] = 0
+            return False
+    
+        if solve():
+            for row in grid:
+                print(row)
+        else:
+            print("No solution")
 
 
     if __name__ == '__main__':
@@ -264,17 +264,17 @@
                     return None
             return s
         return None
-
+    
     def is_var(x):
         return isinstance(x, str) and x[0].islower()
-
+    
     def apply(s, x):
         if is_var(x) and x in s:
             return apply(s, s[x])
         if isinstance(x, list):
             return [apply(s, xi) for xi in x]
         return x
-
+    
     def unify_var(v, x, s):
         if v in s:
             return unify(s[v], x, s)
@@ -285,14 +285,14 @@
         s2 = s.copy()
         s2[v] = x
         return s2
-
+    
     def occurs(v, x):
         if v == x:
             return True
         if isinstance(x, list):
             return any(occurs(v, xi) for xi in x)
         return False
-
+    
     if __name__ == '__main__':
         print(unify(['f', 'X'], ['f', 'a']))
 
